@@ -24,6 +24,93 @@ Rectangle {
         onAccepted: backend.passwordFileName = passwordFileDialog.selectedFile
     }
 
+    Text {
+        id: enterPasswordLabel
+        anchors {
+            top: logoImage.bottom
+            horizontalCenter: textInput.horizontalCenter
+        }
+
+        text: qsTr("Please Enter Password")
+        font.pixelSize: 12
+    }
+    // FIXME: load correct Logo Image
+    Image {
+        id: logoImage
+        x: 316
+        y: 8
+        width: 200
+        height: 200
+        source: "qrc:/qtquickplugin/images/template_image.png"
+        fillMode: Image.PreserveAspectFit
+    }
+
+    TextInput {
+        id: textInput
+        x: 377
+        y: 259
+        width: 80
+        height: 20
+        font.pixelSize: 12
+        text: backend.password
+        inputMethodHints: Qt.ImhHiddenText
+        echoMode: TextInput.Password
+        passwordCharacter: "*"
+    }
+
+    // FIXME: Buttons should be in a gridView to clean things up
+    // FIXME: Button animations should play when clicked.
+    // These buttons can be changed to custom image buttons by assigning images and having properties
+    // that hold their digit information that would be passed to the backend. Assigning a Button Grid View
+    // to be the default focus would also allow for keyboard number pad to also trigger buttons.
+    Button {
+        id: b_1
+        x: -6
+        y: -6
+        text: qsTr("1")
+        anchors.verticalCenter: parent.verticalCenter
+        Connections {
+            target: b_1
+            onClicked: backend.digitClicked("1")
+        }
+        checkable: true
+        anchors.verticalCenterOffset: 12
+        anchors.horizontalCenterOffset: -78
+        anchors.horizontalCenter: parent.horizontalCenter
+    }
+
+    Button {
+        id: b_2
+        x: -11
+        y: -11
+        text: qsTr("2")
+        anchors.verticalCenter: parent.verticalCenter
+        Connections {
+            target: b_2
+            onClicked: backend.digitClicked("2")
+        }
+        checkable: true
+        anchors.verticalCenterOffset: 12
+        anchors.horizontalCenterOffset: 0
+        anchors.horizontalCenter: parent.horizontalCenter
+    }
+
+    Button {
+        id: b_3
+        x: 0
+        y: 0
+        text: qsTr("3")
+        anchors.verticalCenter: parent.verticalCenter
+        Connections {
+            target: b_3
+            onClicked: backend.digitClicked("3")
+        }
+        checkable: true
+        anchors.verticalCenterOffset: 12
+        anchors.horizontalCenterOffset: 84
+        anchors.horizontalCenter: parent.horizontalCenter
+    }
+
     Button {
         id: b_4
         text: qsTr("4")
@@ -117,53 +204,21 @@ Rectangle {
         anchors.verticalCenterOffset: 128
         anchors.horizontalCenterOffset: 84
         anchors.horizontalCenter: parent.horizontalCenter
-    }
+    }    
 
     Button {
-        id: b_1
-        x: -6
-        y: -6
-        text: qsTr("1")
+        id: b_0
+        x: 5
+        y: 5
+        text: qsTr("0")
         anchors.verticalCenter: parent.verticalCenter
         Connections {
-            target: b_1
-            onClicked: backend.digitClicked("1")
+            target: b_0
+            onClicked: backend.digitClicked("0")
         }
         checkable: true
-        anchors.verticalCenterOffset: 12
-        anchors.horizontalCenterOffset: -78
-        anchors.horizontalCenter: parent.horizontalCenter
-    }
-
-    Button {
-        id: b_2
-        x: -11
-        y: -11
-        text: qsTr("2")
-        anchors.verticalCenter: parent.verticalCenter
-        Connections {
-            target: b_2
-            onClicked: backend.digitClicked("2")
-        }
-        checkable: true
-        anchors.verticalCenterOffset: 12
+        anchors.verticalCenterOffset: 186
         anchors.horizontalCenterOffset: 0
-        anchors.horizontalCenter: parent.horizontalCenter
-    }
-
-    Button {
-        id: b_3
-        x: 0
-        y: 0
-        text: qsTr("3")
-        anchors.verticalCenter: parent.verticalCenter
-        Connections {
-            target: b_3
-            onClicked: backend.digitClicked("3")
-        }
-        checkable: true
-        anchors.verticalCenterOffset: 12
-        anchors.horizontalCenterOffset: 84
         anchors.horizontalCenter: parent.horizontalCenter
     }
 
@@ -200,30 +255,6 @@ Rectangle {
     }
 
     Button {
-        id: b_0
-        x: 5
-        y: 5
-        text: qsTr("0")
-        anchors.verticalCenter: parent.verticalCenter
-        Connections {
-            target: b_0
-            onClicked: backend.digitClicked("0")
-        }
-        checkable: true
-        anchors.verticalCenterOffset: 186
-        anchors.horizontalCenterOffset: 0
-        anchors.horizontalCenter: parent.horizontalCenter
-    }
-
-    Text {
-        id: text1
-        x: 947
-        y: 330
-        text: qsTr("Please Enter Password")
-        font.pixelSize: 12
-    }
-
-    Button {
         id: b_openPassFile
         x: -4
         y: -4
@@ -237,36 +268,5 @@ Rectangle {
         anchors.verticalCenterOffset: 294
         anchors.horizontalCenterOffset: 0
         anchors.horizontalCenter: parent.horizontalCenter
-    }
-
-    Image {
-        id: image
-        x: 316
-        y: 8
-        width: 200
-        height: 200
-        source: "qrc:/qtquickplugin/images/template_image.png"
-        fillMode: Image.PreserveAspectFit
-    }
-
-    TextInput {
-        id: textInput
-        x: 377
-        y: 259
-        width: 80
-        height: 20
-        font.pixelSize: 12
-        text: backend.password
-    }
-
-    Text {
-        id: text2
-        x: 358
-        y: 227
-        text: qsTr("Please Enter Password")
-        font.pixelSize: 12
-    }
-
-
-
+    }    
 }
