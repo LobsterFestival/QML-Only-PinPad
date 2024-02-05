@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
     set_qt_environment();
 
     QGuiApplication app(argc, argv);
-    qmlRegisterType< Backend > ("jeremy", 1, 0, "Backend");
+    qmlRegisterType< Backend > ("jeremy.backend", 1, 0, "Backend");
 
     QQmlApplicationEngine engine;
     const QUrl url(u"qrc:/qt/qml/Main/main.qml"_qs);

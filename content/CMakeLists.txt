@@ -12,4 +12,5 @@ qt6_add_qml_module(content
         VideoPlayer.qml
     RESOURCES
         fonts/fonts.txt
+        img/logo200px.png
 )

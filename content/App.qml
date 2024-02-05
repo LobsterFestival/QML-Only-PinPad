@@ -4,7 +4,7 @@
 import QtQuick 6.2
 import QtQuick.Controls
 import sciton_qml_pinpad
-import jeremy
+import jeremy.backend 1.0
 Window {
     id: root
     width: 800

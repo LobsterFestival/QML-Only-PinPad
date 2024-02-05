@@ -1,5 +1,3 @@
-
-
 /*
 This is a UI file (.ui.qml) that is intended to be edited in Qt Design Studio only.
 It is supposed to be strictly declarative and only uses a subset of QML. If you edit
@@ -10,8 +8,9 @@ import QtCore
 import QtQuick 6.2
 import QtQuick.Controls 6.2
 import QtQuick.Dialogs 6.2
+import QtQuick.Layouts
 import sciton_qml_pinpad
-import jeremy 1.0
+
 Rectangle {
     id: rectangle
     width: 800
@@ -32,241 +31,250 @@ Rectangle {
         }
 
         text: qsTr("Please Enter Password")
+        anchors.topMargin: 6
         font.pixelSize: 12
+        anchors.horizontalCenterOffset: 0
     }
     // FIXME: load correct Logo Image
     Image {
         id: logoImage
-        x: 316
-        y: 8
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.verticalCenterOffset: -200
+        anchors.horizontalCenterOffset: 0
         width: 200
         height: 200
-        source: "qrc:/qtquickplugin/images/template_image.png"
+        source: "img/logo200px.png"
+
         fillMode: Image.PreserveAspectFit
     }
 
     TextInput {
         id: textInput
-        x: 377
-        y: 259
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.verticalCenterOffset: -62
+        anchors.horizontalCenterOffset: 0
         width: 80
         height: 20
-        font.pixelSize: 12
         text: backend.password
+        font.pixelSize: 12
         inputMethodHints: Qt.ImhHiddenText
         echoMode: TextInput.Password
         passwordCharacter: "*"
     }
 
-    // FIXME: Buttons should be in a gridView to clean things up
-    // FIXME: Button animations should play when clicked.
-    // These buttons can be changed to custom image buttons by assigning images and having properties
-    // that hold their digit information that would be passed to the backend. Assigning a Button Grid View
-    // to be the default focus would also allow for keyboard number pad to also trigger buttons.
-    Button {
-        id: b_1
-        x: -6
-        y: -6
-        text: qsTr("1")
+    GridLayout {
+        id: gridLayout
         anchors.verticalCenter: parent.verticalCenter
-        Connections {
-            target: b_1
-            onClicked: backend.digitClicked("1")
-        }
-        checkable: true
-        anchors.verticalCenterOffset: 12
-        anchors.horizontalCenterOffset: -78
-        anchors.horizontalCenter: parent.horizontalCenter
-    }
-
-    Button {
-        id: b_2
-        x: -11
-        y: -11
-        text: qsTr("2")
-        anchors.verticalCenter: parent.verticalCenter
-        Connections {
-            target: b_2
-            onClicked: backend.digitClicked("2")
-        }
-        checkable: true
-        anchors.verticalCenterOffset: 12
         anchors.horizontalCenterOffset: 0
         anchors.horizontalCenter: parent.horizontalCenter
-    }
+        anchors.verticalCenterOffset: 65
+        height: 200
+        width: 200
 
-    Button {
-        id: b_3
-        x: 0
-        y: 0
-        text: qsTr("3")
-        anchors.verticalCenter: parent.verticalCenter
-        Connections {
-            target: b_3
-            onClicked: backend.digitClicked("3")
+        Button {
+                id: b_1
+                width: 64
+                height: 64
+                Layout.column: 1
+                Layout.row: 1
+                text: qsTr("1")
+                antialiasing: true
+                Connections {
+                    target: b_1
+                    onClicked: backend.digitClicked("1")
+                }
+                checkable: false
         }
-        checkable: true
-        anchors.verticalCenterOffset: 12
-        anchors.horizontalCenterOffset: 84
-        anchors.horizontalCenter: parent.horizontalCenter
-    }
 
-    Button {
-        id: b_4
-        text: qsTr("4")
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.verticalCenterOffset: 70
-        anchors.horizontalCenterOffset: -78
-        checkable: true
-        anchors.horizontalCenter: parent.horizontalCenter
+        Button {
+            id: b_2
+            height: 64
+            width: 64
+            Layout.column: 2
+            Layout.row: 1
+            text: qsTr("2")
+            antialiasing: true
+            Connections {
+                target: b_2
+                onClicked: backend.digitClicked("2")
+            }
+            checkable: false
 
-        Connections {
-            target: b_4
-            onClicked: backend.digitClicked("4")
         }
-    }
 
-    Button {
-        id: b_5
-        x: -5
-        y: -5
-        text: qsTr("5")
-        anchors.verticalCenter: parent.verticalCenter
-        Connections {
-            target: b_5
-            onClicked: backend.digitClicked("5")
+        Button {
+            id: b_3
+            height: 64
+            width: 64
+            Layout.column: 3
+            Layout.row: 1
+            text: qsTr("3")
+            antialiasing: true
+            Connections {
+                target: b_3
+                onClicked: backend.digitClicked("3")
+            }
+            checkable: false
         }
-        checkable: true
-        anchors.verticalCenterOffset: 70
-        anchors.horizontalCenterOffset: 0
-        anchors.horizontalCenter: parent.horizontalCenter
-    }
 
-    Button {
-        id: b_6
-        x: 6
-        y: 6
-        text: qsTr("6")
-        anchors.verticalCenter: parent.verticalCenter
-        Connections {
-            target: b_6
-            onClicked: backend.digitClicked("6")
-        }
-        checkable: true
-        anchors.verticalCenterOffset: 70
-        anchors.horizontalCenterOffset: 84
-        anchors.horizontalCenter: parent.horizontalCenter
-    }
+        Button {
+            id: b_4
+            height: 64
+            width: 64
+            Layout.column: 1
+            Layout.row: 2
+            text: qsTr("4")
+            antialiasing: true
+            checkable: false
 
-    Button {
-        id: b_7
-        x: 3
-        y: 3
-        text: qsTr("7")
-        anchors.verticalCenter: parent.verticalCenter
-        Connections {
-            target: b_7
-            onClicked: backend.digitClicked("7")
+            Connections {
+                target: b_4
+                onClicked: backend.digitClicked("4")
+            }
         }
-        checkable: true
-        anchors.verticalCenterOffset: 128
-        anchors.horizontalCenterOffset: -78
-        anchors.horizontalCenter: parent.horizontalCenter
-    }
 
-    Button {
-        id: b_8
-        x: -2
-        y: -2
-        text: qsTr("8")
-        anchors.verticalCenter: parent.verticalCenter
-        Connections {
-            target: b_8
-            onClicked: backend.digitClicked("8")
+        Button {
+            id: b_5
+            height: 64
+            width: 64
+            Layout.column: 2
+            Layout.row: 2
+            text: qsTr("5")
+            antialiasing: true
+            Connections {
+                target: b_5
+                onClicked: backend.digitClicked("5")
+            }
+            checkable: false
         }
-        checkable: true
-        anchors.verticalCenterOffset: 128
-        anchors.horizontalCenterOffset: 0
-        anchors.horizontalCenter: parent.horizontalCenter
-    }
 
-    Button {
-        id: b_9
-        x: 9
-        y: 9
-        text: qsTr("9")
-        anchors.verticalCenter: parent.verticalCenter
-        Connections {
-            target: b_9
-            onClicked: backend.digitClicked("9")
+        Button {
+            id: b_6
+            height: 64
+            width: 64
+            Layout.column: 3
+            Layout.row: 2
+            text: qsTr("6")
+            antialiasing: true
+            Connections {
+                target: b_6
+                onClicked: backend.digitClicked("6")
+            }
+            checkable: false
         }
-        checkable: true
-        anchors.verticalCenterOffset: 128
-        anchors.horizontalCenterOffset: 84
-        anchors.horizontalCenter: parent.horizontalCenter
-    }    
 
-    Button {
-        id: b_0
-        x: 5
-        y: 5
-        text: qsTr("0")
-        anchors.verticalCenter: parent.verticalCenter
-        Connections {
-            target: b_0
-            onClicked: backend.digitClicked("0")
+        Button {
+            id: b_7
+            height: 64
+            width: 64
+            Layout.column: 1
+            Layout.row: 3
+            text: qsTr("7")
+            antialiasing: true
+            Connections {
+                target: b_7
+                onClicked: backend.digitClicked("7")
+            }
+            checkable: false
         }
-        checkable: true
-        anchors.verticalCenterOffset: 186
-        anchors.horizontalCenterOffset: 0
-        anchors.horizontalCenter: parent.horizontalCenter
+
+        Button {
+            id: b_8
+            height: 64
+            width: 64
+            Layout.column: 2
+            Layout.row: 3
+            text: qsTr("8")
+            antialiasing: true
+            Connections {
+                target: b_8
+                onClicked: backend.digitClicked("8")
+            }
+            checkable: false
+        }
+
+        Button {
+            id: b_9
+            height: 64
+            width: 64
+            Layout.column: 3
+            Layout.row: 3
+            text: qsTr("9")
+            antialiasing: true
+            Connections {
+                target: b_9
+                onClicked: backend.digitClicked("9")
+            }
+            checkable: false
+        }
+
+        Button {
+            id: b_0
+            height: 64
+            width: 64
+            Layout.column: 2
+            Layout.row: 4
+            text: qsTr("0")
+            antialiasing: true
+            Connections {
+                target: b_0
+                onClicked: backend.digitClicked("0")
+            }
+            checkable: false
+        }
     }
 
     Button {
         id: b_clear
-        x: -3
-        y: -3
+        anchors.verticalCenter: gridLayout.verticalCenter
+        anchors.horizontalCenter: gridLayout.horizontalCenter
+        Layout.column: 1
+        Layout.row: 4
         text: qsTr("Clear")
-        anchors.verticalCenter: parent.verticalCenter
+        anchors.verticalCenterOffset: 97
+        anchors.horizontalCenterOffset: -88
+        antialiasing: true
         Connections {
             target: b_clear
             onClicked: backend.clearClicked()
         }
-        checkable: true
-        anchors.verticalCenterOffset: 186
-        anchors.horizontalCenterOffset: -78
-        anchors.horizontalCenter: parent.horizontalCenter
+        checkable: false
     }
 
     Button {
+        Layout.column: 3
+        Layout.row: 4
         id: b_enter
-        x: 9
-        y: 9
-        text: qsTr("Enter")
         anchors.verticalCenter: parent.verticalCenter
+        anchors.verticalCenterOffset: 161
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.horizontalCenterOffset: 90
+        text: qsTr("Enter")
+        antialiasing: true
         Connections {
             target: b_enter
             onClicked: backend.enterClicked()
         }
-        checkable: true
-        anchors.verticalCenterOffset: 186
-        anchors.horizontalCenterOffset: 92
-        anchors.horizontalCenter: parent.horizontalCenter
+        checkable: false
+
     }
 
     Button {
         id: b_openPassFile
-        x: -4
-        y: -4
         text: qsTr("Open Password File")
         anchors.verticalCenter: parent.verticalCenter
+        anchors.verticalCenterOffset: 277
+        anchors.horizontalCenter: parent.horizontalCenter
+        antialiasing: true
         Connections {
             target: b_openPassFile
             onClicked: passwordFileDialog.open()
         }
-        checkable: true
-        anchors.verticalCenterOffset: 294
-        anchors.horizontalCenterOffset: 0
-        anchors.horizontalCenter: parent.horizontalCenter
-    }    
+        checkable: false
+
+    }
+
+
 }
